@@ -95,8 +95,8 @@ public class Empleado {
             + "\ncedula: " + this.getCedula()
             + "\nEdad: " + this.getEdad()
             + "\nCasado: " + this.isCasado()
-            + "\nsalario: " + this.getSalario()
-            + "\nclasificación: " + this.clasificarEdad();
+            + "\nSalario: " + this.getSalario()
+            + "\nClasificación: " + this.clasificarEdad();
     }
 
 }
