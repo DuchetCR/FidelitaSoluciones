@@ -92,7 +92,7 @@ public class Empleado {
     @Override
     public String toString() {
          return "\nNombre: " + this.getNombre()
-            + "\ncedula: " + this.getCedula()
+            + "\nCedula: " + this.getCedula()
             + "\nEdad: " + this.getEdad()
             + "\nCasado: " + this.isCasado()
             + "\nSalario: " + this.getSalario()
