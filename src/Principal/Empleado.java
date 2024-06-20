@@ -94,7 +94,7 @@ public class Empleado {
          return "\nNombre: " + this.getNombre()
             + "\nCedula: " + this.getCedula()
             + "\nEdad: " + this.getEdad()
-            + "\nCasado: " + this.isCasado()
+            + "\nCasado: " + (this.isCasado() ? "Sí" : "No")
             + "\nSalario: " + this.getSalario()
             + "\nClasificación: " + this.clasificarEdad();
     }
