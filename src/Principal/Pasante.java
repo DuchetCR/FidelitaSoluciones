@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Principal;
 
 /**
  *
  * @author matias
  */
-public class Pasante extends Empleado{
+public class Pasante extends Empleado {
+
     private int duracionPasantia;
     private String universidad;
     private String carrera;
@@ -39,7 +36,6 @@ public class Pasante extends Empleado{
         }
     }
 
-
     public String getUniversidad() {
         return universidad;
     }
@@ -55,12 +51,12 @@ public class Pasante extends Empleado{
     public void setCarrera(String carrera) {
         this.carrera = carrera;
     }
-    
+
     @Override
     public String toString() {
         return super.toString()
-            + "\nDuración de la Pasantía: " + this.getDuracionPasantia() + " meses"
-            + "\nUniversidad: " + this.getUniversidad()
-            + "\nCarrera: " + this.getCarrera();
+                + "\nDuración de la Pasantía: " + this.getDuracionPasantia() + " meses"
+                + "\nUniversidad: " + this.getUniversidad()
+                + "\nCarrera: " + this.getCarrera();
     }
 }

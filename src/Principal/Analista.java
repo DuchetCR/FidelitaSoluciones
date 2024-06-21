@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Principal;
 
 /**
@@ -9,6 +5,7 @@ package Principal;
  * @author matias
  */
 public class Analista extends Empleado {
+
     private String area;
     private String nivelDeExperiencia; //Junior, Semisenior, Senior
     private String certificaciones;
@@ -21,7 +18,7 @@ public class Analista extends Empleado {
     }
 
     public Analista(String nombre, String cedula, int edad, boolean casado, double salario,
-                    String area, String nivelDeExperiencia, String certificaciones) {
+            String area, String nivelDeExperiencia, String certificaciones) {
         super(nombre, cedula, edad, casado, salario);
         this.area = area;
         this.nivelDeExperiencia = nivelDeExperiencia;
@@ -55,8 +52,8 @@ public class Analista extends Empleado {
     @Override
     public String toString() {
         return super.toString()
-            + "\nÁrea: " + this.getArea()
-            + "\nNivel de Experiencia: " + this.getNivelDeExperiencia()
-            + "\nCertificaciones: " + this.getCertificaciones();
+                + "\nÁrea: " + this.getArea()
+                + "\nNivel de Experiencia: " + this.getNivelDeExperiencia()
+                + "\nCertificaciones: " + this.getCertificaciones();
     }
 }

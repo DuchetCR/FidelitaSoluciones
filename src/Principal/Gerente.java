@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Principal;
 
 /**
@@ -13,20 +9,22 @@ public class Gerente extends Empleado {
     private int empleadosAsignados;
     private String departamento;
     private int presupuesto;
-    
+
     public Gerente() {
         super();
         this.empleadosAsignados = 0;
         this.departamento = "";
         this.presupuesto = 0;
     }
-    public Gerente(String nombre, String cedula, int edad, boolean casado, double salario, int empleadosAsignados, String departamento, int presupuesto){
+
+    public Gerente(String nombre, String cedula, int edad, boolean casado, double salario, int empleadosAsignados, String departamento, int presupuesto) {
         super(nombre, cedula, edad, casado, salario);
         this.empleadosAsignados = empleadosAsignados;
         this.departamento = departamento;
         this.presupuesto = presupuesto;
     }
-   public int getEmpleadosAsignados() {
+
+    public int getEmpleadosAsignados() {
         return empleadosAsignados;
     }
 
@@ -49,7 +47,6 @@ public class Gerente extends Empleado {
     public void setPresupuesto(int presupuesto) {
         this.presupuesto = presupuesto;
     }
-
 
     @Override
     public String toString() {

@@ -5,6 +5,7 @@ package Principal;
  * @author DuchetCR
  */
 public class Empleado {
+
     private String nombre;
     private String cedula;
     private int edad;
@@ -91,12 +92,12 @@ public class Empleado {
 
     @Override
     public String toString() {
-         return "\nNombre: " + this.getNombre()
-            + "\nCedula: " + this.getCedula()
-            + "\nEdad: " + this.getEdad()
-            + "\nCasado: " + (this.isCasado() ? "Sí" : "No")
-            + "\nSalario: " + this.getSalario()
-            + "\nClasificación: " + this.clasificarEdad();
+        return "\nNombre: " + this.getNombre()
+                + "\nCedula: " + this.getCedula()
+                + "\nEdad: " + this.getEdad()
+                + "\nCasado: " + (this.isCasado() ? "Sí" : "No")
+                + "\nSalario: " + this.getSalario()
+                + "\nClasificación: " + this.clasificarEdad();
     }
 
 }
