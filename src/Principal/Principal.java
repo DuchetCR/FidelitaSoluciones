@@ -1,7 +1,6 @@
 package Principal;
 
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author DuchetCR
