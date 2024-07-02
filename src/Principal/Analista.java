@@ -6,18 +6,18 @@ package Principal;
 public class Analista extends Empleado {
 
     private String area;
-    private String nivelDeExperiencia; //Junior, Semisenior, Senior
-    private String certificaciones;
+    private String nivelDeExperiencia; //Junior, Mid-Level, Senior
+    private String[] certificaciones;
 
     public Analista() {
         super();
         this.area = "";
         this.nivelDeExperiencia = "";
-        this.certificaciones = "";
+        this.certificaciones = new String[0];
     }
 
     public Analista(String nombre, String cedula, int edad, boolean casado, double salario,
-            String area, String nivelDeExperiencia, String certificaciones) {
+            String area, String nivelDeExperiencia, String[] certificaciones) {
         super(nombre, cedula, edad, casado, salario);
         this.area = area;
         this.nivelDeExperiencia = nivelDeExperiencia;
@@ -40,11 +40,11 @@ public class Analista extends Empleado {
         this.nivelDeExperiencia = nivelDeExperiencia;
     }
 
-    public String getCertificaciones() {
+    public String[] getCertificaciones() {
         return certificaciones;
     }
 
-    public void setCertificaciones(String certificaciones) {
+    public void setCertificaciones(String[] certificaciones) {
         this.certificaciones = certificaciones;
     }
 
@@ -53,6 +53,6 @@ public class Analista extends Empleado {
         return super.toString()
                 + "\nÁrea: " + this.getArea()
                 + "\nNivel de Experiencia: " + this.getNivelDeExperiencia()
-                + "\nCertificaciones: " + this.getCertificaciones();
+                + "\nCertificaciones: " + String.join(", ", this.getCertificaciones());
     }
 }
