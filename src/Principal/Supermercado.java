@@ -12,7 +12,6 @@ public class Supermercado {
             long tiempoProducto = (long) (Math.random() * 61) + 20; // 20 a 80 milisegundos
             tiempoCajas += tiempoProducto;
         }
-
         try {
             System.out.println("El cliente " + idCliente + " esta en cajas");
             Thread.sleep(tiempoCajas);
