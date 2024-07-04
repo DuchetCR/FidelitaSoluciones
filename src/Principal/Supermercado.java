@@ -5,7 +5,7 @@ package Principal;
  * @author Kenneth
  */
 public class Supermercado {
-    public void pasarPorCajas(int idCliente, int productosComprados) {
+    public void pasarPorCajas(String nombreCliente, int productosComprados) {
         long tiempoCajas = 0;
 
         for (int i = 0; i < productosComprados; i++) {
@@ -13,12 +13,12 @@ public class Supermercado {
             tiempoCajas += tiempoProducto;
         }
         try {
-            System.out.println("El cliente " + idCliente + " esta en cajas");
+            System.out.println("El cliente " + nombreCliente + " está en cajas");
             Thread.sleep(tiempoCajas);
             System.out.println(
-                    "El cliente " + idCliente + " ha terminado de pagar en un tiempo total de " + tiempoCajas + " ms");
+                    "El cliente " + nombreCliente + " ha terminado de pagar en un tiempo total de " + tiempoCajas + " ms");
         } catch (InterruptedException e) {
-            System.out.println("Hubo un problema al atender al cliente " + idCliente);
+            System.out.println("Hubo un problema al atender al cliente " + nombreCliente);
         }
     }
 }
