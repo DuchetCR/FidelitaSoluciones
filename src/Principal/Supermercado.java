@@ -5,6 +5,35 @@ package Principal;
  * @author Kenneth
  */
 public class Supermercado {
+    private int productosTotales;
+    private long tiempoTotalEstancia;
+    private long tiempoTotalAtencion;
+    private int totalClientesAtendidos;
+
+    public Supermercado() {
+        productosTotales = 0;
+        tiempoTotalEstancia = 0;
+        tiempoTotalAtencion = 0;
+        totalClientesAtendidos = 0;
+    }
+
+    public void agregarProductos(int productos) {
+        productosTotales += productos;
+    }
+
+    public int getProductosTotales() {
+        return productosTotales;
+    }
+
+    public void registrarEstancia(long tiempoEstancia) {
+        tiempoTotalEstancia += tiempoEstancia;
+    }
+
+    public void registrarAtencion(long tiempoAtencion) {
+        tiempoTotalAtencion += tiempoAtencion;
+        totalClientesAtendidos++;
+    }
+
     public void pasarPorCajas(String nombreCliente, int productosComprados) {
         long tiempoCajas = 0;
 
@@ -20,5 +49,15 @@ public class Supermercado {
         } catch (InterruptedException e) {
             System.out.println("Hubo un problema al atender al cliente " + nombreCliente);
         }
+        agregarProductos(productosComprados);
+        registrarAtencion(tiempoCajas);
+    }
+
+    public double getTiempoPromedioEstancia() {
+        return (double) tiempoTotalEstancia / totalClientesAtendidos;
+    }
+
+    public double getTiempoPromedioAtencion() {
+        return (double) tiempoTotalAtencion / totalClientesAtendidos;
     }
 }
