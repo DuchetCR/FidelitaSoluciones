@@ -194,20 +194,11 @@ public class Libros extends javax.swing.JFrame {
     }//GEN-LAST:event_jTxtTituloActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        String nom = txtNombre.getText();
-        String ape = txtApellido.getText();
-        String sexo = (rbH.isSelected() ? "H" : "M");//verifico lo que selecciono el los radios
-        String estado = cmbEstado.getSelectedItem().toString();//capturamos el item del combo
 
-        String fila[] = {nom, ape, sexo, estado};
-        tabla.addRow(fila);
-        limpiar();
-
-        stad.realizarConteo(sexo, estado);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        limpiar();
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
