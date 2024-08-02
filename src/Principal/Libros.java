@@ -36,11 +36,12 @@ public class Libros extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable_libros = new javax.swing.JTable();
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Libros", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(0, 0, 0))); // NOI18N
         jPanel1.setToolTipText("Datos de Libros");
@@ -135,18 +136,18 @@ public class Libros extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_libros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTable_libros);
 
         btnEliminar.setBackground(new java.awt.Color(0, 51, 153));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -200,21 +201,26 @@ public class Libros extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel1.getAccessibleContext().setAccessibleName("Datos de Libros");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void limpiar() {
+        jTxtTitulo.setText("");
+        jTxtEditorial.setText("");
+        jTxtAnio.setText("");
+    }
     private void jTxtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTituloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtTituloActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
+   // int indexSelect = jTabbedPane.getSelectedIndex();
+    ConexionBD conexion = new ConexionBD();
+    conexion.InsertarLibro(jTxtTitulo, jTxtEditorial, jTxtAnio);
+    conexion.RellenaLaTablaConDatosMySQL("libro", jTable_libros);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -270,7 +276,7 @@ public class Libros extends javax.swing.JFrame {
     private java.awt.Label jLbl_titulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable_libros;
     private javax.swing.JTextField jTxtAnio;
     private javax.swing.JTextField jTxtEditorial;
     private javax.swing.JTextField jTxtTitulo;
