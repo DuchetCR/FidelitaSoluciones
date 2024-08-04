@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -37,9 +38,9 @@ public class ConexionBD {
             e.printStackTrace();
         }
         return conexion;
-
     }
-    public void RellenaLaTablaConDatosMySQL(String tabla, JTable visor) {
+
+    public void leerLibros(String tabla, JTable visor) {
         String sql = "SELECT * FROM " + tabla;
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID Libro");
@@ -64,10 +65,11 @@ public class ConexionBD {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } 
+        }
     }
-     public void InsertarLibro(JTextField titulo, JTextField editorial, JTextField anio) {
-        String sql = "INSERT INTO libro (titulo, editorial, anio) VALUES (?, ?, ?)";
+
+    public void InsertarLibro(JTextField titulo, JTextField editorial, JTextField anio) {
+        String sql = "INSERT INTO libros (titulo, editorial, anio) VALUES (?, ?, ?)";
         Connection conexion = conectar();
         PreparedStatement ps = null;
         try {
@@ -75,6 +77,105 @@ public class ConexionBD {
             ps.setString(1, titulo.getText());
             ps.setString(2, editorial.getText());
             ps.setInt(3, Integer.parseInt(anio.getText()));
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Libro Insertado");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void EliminaRegistro(String idColumn, String tabla, String id) {
+        String sql = "DELETE FROM " + tabla + " WHERE " + idColumn + " = ?";
+        Connection conexion = conectar();
+        PreparedStatement ps = null;
+        try {
+            ps = conexion.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarLibro(JTextField titulo, JTextField editorial, JTextField anio, String id) {
+        String sql = "UPDATE libros SET titulo = ?, editorial = ?, anio = ? WHERE id_libro = ?";
+        Connection conexion = conectar();
+        PreparedStatement ps = null;
+        try {
+            ps = conexion.prepareStatement(sql);
+            ps.setString(1, titulo.getText());
+            ps.setString(2, editorial.getText());
+            ps.setInt(3, Integer.parseInt(anio.getText()));
+            ps.setString(4, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void leerLectores(String tabla, JTable visor) {
+        String sql = "SELECT * FROM " + tabla;
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID Usuario");
+        model.addColumn("Nombre");
+        model.addColumn("Dirección");
+        model.addColumn("Teléfono");
+        model.addColumn("Ciudad");
+        model.addColumn("Correo");
+
+        visor.setModel(model);
+        String[] dato = new String[6];
+        Connection conexion = conectar();
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = conexion.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                dato[0] = rs.getString("id_usuario");
+                dato[1] = rs.getString("nombre");
+                dato[2] = rs.getString("direccion");
+                dato[3] = rs.getString("telefono");
+                dato[4] = rs.getString("ciudad");
+                dato[5] = rs.getString("correo");
+                model.addRow(dato);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void InsertarUsuario(JTextField nombre, JTextField direccion, JTextField telefono, JTextField ciudad, JTextField correo) {
+        String sql = "INSERT INTO lectores (nombre, direccion, telefono, ciudad, correo) VALUES (?, ?, ?, ?, ?)";
+        Connection conexion = conectar();
+        PreparedStatement ps = null;
+        try {
+            ps = conexion.prepareStatement(sql);
+            ps.setString(1, nombre.getText());
+            ps.setString(2, direccion.getText());
+            ps.setString(3, telefono.getText());
+            ps.setString(4, ciudad.getText());
+            ps.setString(5, correo.getText());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Lector Insertado");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarUsuario(JTextField nombre, JTextField direccion, JTextField telefono, JTextField ciudad, JTextField correo, String id) {
+        String sql = "UPDATE lectores SET nombre = ?, direccion = ?, telefono = ?, ciudad = ?, correo = ? WHERE id_usuario = ?";
+        Connection conexion = conectar();
+        PreparedStatement ps = null;
+        try {
+            ps = conexion.prepareStatement(sql);
+            ps.setString(1, nombre.getText());
+            ps.setString(2, direccion.getText());
+            ps.setString(3, telefono.getText());
+            ps.setString(4, ciudad.getText());
+            ps.setString(5, correo.getText());
+            ps.setString(6, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

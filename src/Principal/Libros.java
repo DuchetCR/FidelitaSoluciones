@@ -4,6 +4,8 @@
  */
 package Principal;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DuchetCR
@@ -13,8 +15,28 @@ public class Libros extends javax.swing.JFrame {
     /**
      * Creates new form Libros
      */
+    private ConexionBD conexion;
+
     public Libros() {
         initComponents();
+        setupTableListener();
+        conexion = new ConexionBD();
+        conexion.leerLibros("libros", jTable_libros);
+    }
+
+    private void setupTableListener() {
+        jTable_libros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_librosMouseClicked(evt);
+            }
+        });
+    }
+
+    private void jTable_librosMouseClicked(java.awt.event.MouseEvent evt) {
+        int selectedRow = jTable_libros.getSelectedRow();
+        jTxtTitulo.setText(jTable_libros.getValueAt(selectedRow, 1).toString());
+        jTxtEditorial.setText(jTable_libros.getValueAt(selectedRow, 2).toString());
+        jTxtAnio.setText(jTable_libros.getValueAt(selectedRow, 3).toString());
     }
 
     /**
@@ -138,13 +160,13 @@ public class Libros extends javax.swing.JFrame {
 
         jTable_libros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(jTable_libros);
@@ -211,12 +233,26 @@ public class Libros extends javax.swing.JFrame {
     private void jTxtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTituloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtTituloActionPerformed
+    private boolean validateInputs() {
+        if (jTxtTitulo.getText().isEmpty() || jTxtEditorial.getText().isEmpty() || jTxtAnio.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben ser llenados.");
+            return false;
+        }
+        try {
+            Integer.parseInt(jTxtAnio.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El año debe ser un número válido.");
+            return false;
+        }
+        return true;
+    }
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-   // int indexSelect = jTabbedPane.getSelectedIndex();
-    ConexionBD conexion = new ConexionBD();
-    conexion.InsertarLibro(jTxtTitulo, jTxtEditorial, jTxtAnio);
-    conexion.RellenaLaTablaConDatosMySQL("libro", jTable_libros);
+        if (validateInputs()) {
+            conexion.InsertarLibro(jTxtTitulo, jTxtEditorial, jTxtAnio);
+            conexion.leerLibros("libros", jTable_libros);
+            limpiar();
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -225,10 +261,33 @@ public class Libros extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+        int selectedRow = jTable_libros.getSelectedRow();
+        if (selectedRow != -1) {
+            String id = jTable_libros.getValueAt(selectedRow, 0).toString();
+            conexion.EliminaRegistro("id_libro", "libros", id);
+            conexion.leerLibros("libros", jTable_libros);
+            limpiar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un libro para eliminar.");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
+        int selectedRow = jTable_libros.getSelectedRow();
+
+        if (selectedRow != -1) {
+            String id = jTable_libros.getValueAt(selectedRow, 0).toString();
+            String titulo = jTxtTitulo.getText();
+            String editorial = jTxtEditorial.getText();
+            String anio = jTxtAnio.getText();
+            conexion.ActualizarLibro(jTxtTitulo, jTxtEditorial, jTxtAnio, id);
+            conexion.leerLibros("libros", jTable_libros);
+            limpiar();
+            JOptionPane.showMessageDialog(null, "Libro Actualizado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione un lector para actualizar.");
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
