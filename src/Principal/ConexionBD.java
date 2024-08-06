@@ -68,19 +68,27 @@ public class ConexionBD {
         }
     }
 
-    public void InsertarLibro(JTextField titulo, JTextField editorial, JTextField anio) {
+    public void InsertarLibro(String titulo, String editorial, String anio) {
         String sql = "INSERT INTO libros (titulo, editorial, anio) VALUES (?, ?, ?)";
         Connection conexion = conectar();
         PreparedStatement ps = null;
         try {
             ps = conexion.prepareStatement(sql);
-            ps.setString(1, titulo.getText());
-            ps.setString(2, editorial.getText());
-            ps.setInt(3, Integer.parseInt(anio.getText()));
+            ps.setString(1, titulo);
+            ps.setString(2, editorial);
+            ps.setInt(3, Integer.parseInt(anio));
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Libro Insertado");
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            // Asegúrate de cerrar los recursos en un bloque finally
+            try {
+                if (ps != null) ps.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -146,17 +154,16 @@ public class ConexionBD {
         }
     }
 
-    public void InsertarUsuario(JTextField nombre, JTextField direccion, JTextField telefono, JTextField ciudad, JTextField correo) {
+    public void InsertarUsuario(String nombre, String direccion, String telefono, String ciudad, String correo) {
         String sql = "INSERT INTO lectores (nombre, direccion, telefono, ciudad, correo) VALUES (?, ?, ?, ?, ?)";
-        Connection conexion = conectar();
-        PreparedStatement ps = null;
-        try {
-            ps = conexion.prepareStatement(sql);
-            ps.setString(1, nombre.getText());
-            ps.setString(2, direccion.getText());
-            ps.setString(3, telefono.getText());
-            ps.setString(4, ciudad.getText());
-            ps.setString(5, correo.getText());
+        try (Connection conexion = conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ps.setString(2, direccion);
+            ps.setString(3, telefono);
+            ps.setString(4, ciudad);
+            ps.setString(5, correo);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Lector Insertado");
         } catch (SQLException e) {
@@ -164,17 +171,16 @@ public class ConexionBD {
         }
     }
 
-    public void ActualizarUsuario(JTextField nombre, JTextField direccion, JTextField telefono, JTextField ciudad, JTextField correo, String id) {
+    public void ActualizarUsuario(String nombre, String direccion, String telefono, String ciudad, String correo, String id) {
         String sql = "UPDATE lectores SET nombre = ?, direccion = ?, telefono = ?, ciudad = ?, correo = ? WHERE id_usuario = ?";
-        Connection conexion = conectar();
-        PreparedStatement ps = null;
-        try {
-            ps = conexion.prepareStatement(sql);
-            ps.setString(1, nombre.getText());
-            ps.setString(2, direccion.getText());
-            ps.setString(3, telefono.getText());
-            ps.setString(4, ciudad.getText());
-            ps.setString(5, correo.getText());
+        try (Connection conexion = conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ps.setString(2, direccion);
+            ps.setString(3, telefono);
+            ps.setString(4, ciudad);
+            ps.setString(5, correo);
             ps.setString(6, id);
             ps.executeUpdate();
         } catch (SQLException e) {
