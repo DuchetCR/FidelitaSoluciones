@@ -25,7 +25,6 @@ public class ConexionBD {
     PreparedStatement consulta = null;
     ResultSet resultado = null;
 
-    //Parametros de la inicializacion de BD
     String url = "jdbc:mysql://localhost:3306/biblioteca";
     String username = "root";
     String password = "";
@@ -82,7 +81,6 @@ public class ConexionBD {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Asegúrate de cerrar los recursos en un bloque finally
             try {
                 if (ps != null) ps.close();
                 if (conexion != null) conexion.close();
