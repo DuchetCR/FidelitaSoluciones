@@ -16,7 +16,7 @@ public class Lectores extends javax.swing.JFrame {
     public Lectores() {
         initComponents();
         lector = new ClaseLectores("", "", "", "", "", "");
-        lector.cargarLectores(jTable_lectores);
+        lector.cargar(jTable_lectores);
         setupTableListener();
     }
 
@@ -312,7 +312,7 @@ public class Lectores extends javax.swing.JFrame {
 
             lector.eliminarLector(id, nombre, direccion, telefono, ciudad, correo, cedula);
             limpiar();
-            lector.cargarLectores(jTable_lectores);
+            lector.cargar(jTable_lectores);
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona un lector para eliminar.");
         }   
@@ -338,7 +338,7 @@ public class Lectores extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Datos del lector actualizados", "Actualizar Datos",
                         JOptionPane.INFORMATION_MESSAGE);
                 limpiar();
-                lector.cargarLectores(jTable_lectores); 
+                lector.cargar(jTable_lectores); 
             } else {
                 JOptionPane.showMessageDialog(null, "Selecciona un lector para actualizar.");
             }  
