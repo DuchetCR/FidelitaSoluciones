@@ -140,6 +140,7 @@ public class ClaseLectores extends Usuario {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
+    @Override
     public void cargar(javax.swing.JTable table) {
         conexion.leerLectores("lectores", table);
     }
