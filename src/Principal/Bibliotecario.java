@@ -145,7 +145,7 @@ public class Bibliotecario extends Usuario {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void cargarBibliotecario(javax.swing.JTable table) {
+    public void cargar(javax.swing.JTable table) {
         conexion.leerBibliotecarios("bibliotecarios", table);
     }
     
