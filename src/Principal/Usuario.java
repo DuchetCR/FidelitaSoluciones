@@ -59,7 +59,7 @@ public abstract class Usuario {
         this.correo = correo;
     }
     
-
+    public abstract void cargar(javax.swing.JTable table);
     public abstract void mostrarInformacion();
 
 }
