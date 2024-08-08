@@ -129,9 +129,10 @@ public class ConexionBD {
         model.addColumn("Teléfono");
         model.addColumn("Ciudad");
         model.addColumn("Correo");
+        model.addColumn("Cedula");
 
         visor.setModel(model);
-        String[] dato = new String[6];
+        String[] dato = new String[7];
         Connection conexion = conectar();
         Statement st = null;
         ResultSet rs = null;
@@ -145,6 +146,41 @@ public class ConexionBD {
                 dato[3] = rs.getString("telefono");
                 dato[4] = rs.getString("ciudad");
                 dato[5] = rs.getString("correo");
+                dato[6] = rs.getString("cedula");
+                model.addRow(dato);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+        public void leerBibliotecarios(String tabla, JTable visor) {
+        String sql = "SELECT * FROM " + tabla;
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID Empleado");
+        model.addColumn("Nombre");
+        model.addColumn("Dirección");
+        model.addColumn("Teléfono");
+        model.addColumn("Ciudad");
+        model.addColumn("Correo");
+        model.addColumn("Código Empleado");
+
+        visor.setModel(model);
+        String[] dato = new String[7];
+        Connection conexion = conectar();
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = conexion.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                dato[0] = rs.getString("id_usuario");
+                dato[1] = rs.getString("nombre");
+                dato[2] = rs.getString("direccion");
+                dato[3] = rs.getString("telefono");
+                dato[4] = rs.getString("ciudad");
+                dato[5] = rs.getString("correo");
+                dato[6] = rs.getString("codigo_empleado");
                 model.addRow(dato);
             }
         } catch (SQLException e) {
@@ -152,25 +188,44 @@ public class ConexionBD {
         }
     }
 
-    public void InsertarUsuario(String nombre, String direccion, String telefono, String ciudad, String correo) {
-        String sql = "INSERT INTO lectores (nombre, direccion, telefono, ciudad, correo) VALUES (?, ?, ?, ?, ?)";
+    public void InsertarLector(ClaseLectores usuario) {
+        String sql = "INSERT INTO lectores (nombre, direccion, telefono, ciudad, correo, cedula) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conexion = conectar();
              PreparedStatement ps = conexion.prepareStatement(sql)) {
 
-            ps.setString(1, nombre);
-            ps.setString(2, direccion);
-            ps.setString(3, telefono);
-            ps.setString(4, ciudad);
-            ps.setString(5, correo);
+            ps.setString(1, usuario.nombre);
+            ps.setString(2, usuario.direccion);
+            ps.setString(3, usuario.telefono);
+            ps.setString(4, usuario.ciudad);
+            ps.setString(5, usuario.correo);
+            ps.setString(6, usuario.getCedula());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Lector Insertado");
+            JOptionPane.showMessageDialog(null, "Usuario Insertado");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void InsertarBibliotecario(Bibliotecario usuario) {
+        String sql = "INSERT INTO bibliotecarios (nombre, direccion, telefono, ciudad, correo, codigo_empleado) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection conexion = conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, usuario.nombre);
+            ps.setString(2, usuario.direccion);
+            ps.setString(3, usuario.telefono);
+            ps.setString(4, usuario.ciudad);
+            ps.setString(5, usuario.correo);
+            ps.setString(6, usuario.getCodigoEmpleado());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuario Insertado");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void ActualizarUsuario(String nombre, String direccion, String telefono, String ciudad, String correo, String id) {
-        String sql = "UPDATE lectores SET nombre = ?, direccion = ?, telefono = ?, ciudad = ?, correo = ? WHERE id_usuario = ?";
+    public void ActualizarLector(String nombre, String direccion, String telefono, String ciudad, String correo, String cedula, String id) {
+        String sql = "UPDATE lectores SET nombre = ?, direccion = ?, telefono = ?, ciudad = ?, correo = ?, cedula = ? WHERE id_usuario = ?";
         try (Connection conexion = conectar();
              PreparedStatement ps = conexion.prepareStatement(sql)) {
 
@@ -179,7 +234,26 @@ public class ConexionBD {
             ps.setString(3, telefono);
             ps.setString(4, ciudad);
             ps.setString(5, correo);
-            ps.setString(6, id);
+            ps.setString(6, cedula);
+            ps.setString(7, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void ActualizarBibliotecario(String nombre, String direccion, String telefono, String ciudad, String correo, String codigo_empleado, String id) {
+        String sql = "UPDATE bibliotecarios SET nombre = ?, direccion = ?, telefono = ?, ciudad = ?, correo = ?, codigo_empleado = ? WHERE id_usuario = ?";
+        try (Connection conexion = conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ps.setString(2, direccion);
+            ps.setString(3, telefono);
+            ps.setString(4, ciudad);
+            ps.setString(5, correo);
+            ps.setString(6, codigo_empleado);
+            ps.setString(7, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
