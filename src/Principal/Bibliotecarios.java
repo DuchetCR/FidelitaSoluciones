@@ -1,0 +1,411 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package Principal;
+
+import javax.swing.JOptionPane;
+import java.io.*;
+/**
+ *
+ * @author DuchetCR
+ */
+public class Bibliotecarios extends javax.swing.JFrame {
+    private Bibliotecario bibliotecario;
+
+    public Bibliotecarios() {
+        initComponents();
+        bibliotecario = new Bibliotecario("", "", "", "", "","");
+        bibliotecario.cargarBibliotecario(jTable_bibliotecarios);
+        setupTableListener();
+    }
+
+    private void setupTableListener() {
+        jTable_bibliotecarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_lectoresMouseClicked(evt);
+            }
+        });
+    }
+
+    private void jTable_lectoresMouseClicked(java.awt.event.MouseEvent evt) {
+        int selectedRow = jTable_bibliotecarios.getSelectedRow();
+        jTxtNombre.setText(jTable_bibliotecarios.getValueAt(selectedRow, 1).toString());
+        jTxtDireccion.setText(jTable_bibliotecarios.getValueAt(selectedRow, 2).toString());
+        jTxtTelefono.setText(jTable_bibliotecarios.getValueAt(selectedRow, 3).toString());
+        jTxtCiudad.setText(jTable_bibliotecarios.getValueAt(selectedRow, 4).toString());
+        jTxtCorreo.setText(jTable_bibliotecarios.getValueAt(selectedRow, 5).toString());
+        jTxtCodigo.setText(jTable_bibliotecarios.getValueAt(selectedRow, 6).toString());
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jLblNombre = new javax.swing.JLabel();
+        jTxtNombre = new javax.swing.JTextField();
+        jTxtDireccion = new javax.swing.JTextField();
+        jLblDireccion = new javax.swing.JLabel();
+        jLblTelefono = new javax.swing.JLabel();
+        jTxtTelefono = new javax.swing.JTextField();
+        jLblCiudad = new javax.swing.JLabel();
+        jTxtCiudad = new javax.swing.JTextField();
+        jLblCorreo = new javax.swing.JLabel();
+        jTxtCorreo = new javax.swing.JTextField();
+        btnAgregar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        jLblCorreo1 = new javax.swing.JLabel();
+        jTxtCodigo = new javax.swing.JTextField();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable_bibliotecarios = new javax.swing.JTable();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Bibliotecarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        jPanel1.setToolTipText("Datos de Bibliotecarios");
+
+        jLblNombre.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLblNombre.setText("Nombre:");
+
+        jTxtNombre.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTxtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtNombreActionPerformed(evt);
+            }
+        });
+
+        jTxtDireccion.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+
+        jLblDireccion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLblDireccion.setText("Dirección:");
+
+        jLblTelefono.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLblTelefono.setText("Telefono:");
+
+        jTxtTelefono.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+
+        jLblCiudad.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLblCiudad.setText("Ciudad:");
+
+        jTxtCiudad.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+
+        jLblCorreo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLblCorreo.setText("Correo:");
+
+        jTxtCorreo.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTxtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCorreoActionPerformed(evt);
+            }
+        });
+
+        btnAgregar.setBackground(new java.awt.Color(0, 51, 153));
+        btnAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setBackground(new java.awt.Color(0, 51, 153));
+        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        jLblCorreo1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLblCorreo1.setText("Código:");
+
+        jTxtCodigo.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTxtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCodigoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLimpiar)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblDireccion)
+                    .addComponent(jLblNombre)
+                    .addComponent(jLblTelefono)
+                    .addComponent(jLblCiudad)
+                    .addComponent(jLblCorreo)
+                    .addComponent(jLblCorreo1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTxtCorreo)
+                    .addComponent(jTxtCiudad)
+                    .addComponent(jTxtNombre)
+                    .addComponent(jTxtDireccion)
+                    .addComponent(jTxtTelefono)
+                    .addComponent(jTxtCodigo))
+                .addGap(42, 42, 42))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblNombre)
+                    .addComponent(jTxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblDireccion)
+                    .addComponent(jTxtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblTelefono)
+                    .addComponent(jTxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblCiudad)
+                    .addComponent(jTxtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblCorreo)
+                    .addComponent(jTxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblCorreo1)
+                    .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregar)
+                    .addComponent(btnLimpiar)))
+        );
+
+        btnActualizar.setBackground(new java.awt.Color(0, 51, 153));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setBackground(new java.awt.Color(0, 51, 153));
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        jTable_bibliotecarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTable_bibliotecarios);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnActualizar)))
+                        .addContainerGap())))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnEliminar))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel1.getAccessibleContext().setAccessibleName("Datos de Bibliotecarios");
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+    private void limpiar() {
+        jTxtNombre.setText("");
+        jTxtDireccion.setText("");
+        jTxtTelefono.setText("");
+        jTxtCiudad.setText("");
+        jTxtCorreo.setText("");
+        jTxtCodigo.setText("");
+    }
+
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        String nombre = jTxtNombre.getText();
+        String direccion = jTxtDireccion.getText();
+        String telefono = jTxtTelefono.getText();
+        String ciudad = jTxtCiudad.getText();
+        String correo = jTxtCorreo.getText();
+        String codigo = jTxtCodigo.getText();
+
+        if (bibliotecario.validateInputs(nombre, direccion, telefono, ciudad, correo, codigo)) {
+            bibliotecario.agregarBibliotecario(nombre, direccion, telefono, ciudad, correo, codigo);
+            JOptionPane.showMessageDialog(null, "Datos guardados correctamente", "Agregar Datos",
+                    JOptionPane.INFORMATION_MESSAGE);
+            limpiar();
+        }    
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int selectedRow = jTable_bibliotecarios.getSelectedRow();
+        if (selectedRow != -1) {
+            String nombre = jTable_bibliotecarios.getValueAt(selectedRow, 1).toString();
+            String direccion = jTable_bibliotecarios.getValueAt(selectedRow, 2).toString();
+            String telefono = jTable_bibliotecarios.getValueAt(selectedRow, 3).toString();
+            String ciudad = jTable_bibliotecarios.getValueAt(selectedRow, 4).toString();
+            String correo = jTable_bibliotecarios.getValueAt(selectedRow, 5).toString();
+            String codigo = jTable_bibliotecarios.getValueAt(selectedRow, 6).toString();
+            int id = Integer.parseInt(jTable_bibliotecarios.getValueAt(selectedRow, 0).toString()); 
+
+            bibliotecario.eliminarBibliotecario(id, nombre, direccion, telefono, ciudad, correo, codigo);
+            limpiar();
+            bibliotecario.cargarBibliotecario(jTable_bibliotecarios);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona un bibliotecario para eliminar.");
+        }   
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jTxtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCorreoActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        new Thread(() -> {    
+            int selectedRow = jTable_bibliotecarios.getSelectedRow();
+            if (selectedRow != -1) {
+                String id = jTable_bibliotecarios.getValueAt(selectedRow, 0).toString(); 
+                String nombre = jTxtNombre.getText();
+                String direccion = jTxtDireccion.getText();
+                String telefono = jTxtTelefono.getText();
+                String ciudad = jTxtCiudad.getText();
+                String correo = jTxtCorreo.getText();
+                String codigo = jTxtCodigo.getText();
+
+                bibliotecario.actualizarBibliotecario(id, nombre, direccion, telefono, ciudad, correo, codigo);
+                JOptionPane.showMessageDialog(null, "Datos del bibliotecario actualizados", "Actualizar Datos",
+                        JOptionPane.INFORMATION_MESSAGE);
+                limpiar();
+                bibliotecario.cargarBibliotecario(jTable_bibliotecarios); 
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecciona un bibliotecario para actualizar.");
+            }  
+        }).start();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void jTxtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtNombreActionPerformed
+
+    private void jTxtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCodigoActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Bibliotecarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Bibliotecarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Bibliotecarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Bibliotecarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Bibliotecarios().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JLabel jLblCiudad;
+    private javax.swing.JLabel jLblCorreo;
+    private javax.swing.JLabel jLblCorreo1;
+    private javax.swing.JLabel jLblDireccion;
+    private javax.swing.JLabel jLblNombre;
+    private javax.swing.JLabel jLblTelefono;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable_bibliotecarios;
+    private javax.swing.JTextField jTxtCiudad;
+    private javax.swing.JTextField jTxtCodigo;
+    private javax.swing.JTextField jTxtCorreo;
+    private javax.swing.JTextField jTxtDireccion;
+    private javax.swing.JTextField jTxtNombre;
+    private javax.swing.JTextField jTxtTelefono;
+    // End of variables declaration//GEN-END:variables
+}
