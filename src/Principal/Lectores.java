@@ -15,7 +15,7 @@ public class Lectores extends javax.swing.JFrame {
 
     public Lectores() {
         initComponents();
-        lector = new ClaseLectores();
+        lector = new ClaseLectores("", "", "", "", "", "");
         lector.cargarLectores(jTable_lectores);
         setupTableListener();
     }
@@ -35,6 +35,7 @@ public class Lectores extends javax.swing.JFrame {
         jTxtTelefono.setText(jTable_lectores.getValueAt(selectedRow, 3).toString());
         jTxtCiudad.setText(jTable_lectores.getValueAt(selectedRow, 4).toString());
         jTxtCorreo.setText(jTable_lectores.getValueAt(selectedRow, 5).toString());
+        jTxtCedula.setText(jTable_lectores.getValueAt(selectedRow, 6).toString());
     }
 
     @SuppressWarnings("unchecked")
@@ -54,6 +55,8 @@ public class Lectores extends javax.swing.JFrame {
         jTxtCorreo = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        jLblCorreo1 = new javax.swing.JLabel();
+        jTxtCedula = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -119,32 +122,49 @@ public class Lectores extends javax.swing.JFrame {
             }
         });
 
+        jLblCorreo1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLblCorreo1.setText("Cédula:");
+
+        jTxtCedula.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jTxtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCedulaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLblDireccion)
-                    .addComponent(jLblNombre)
-                    .addComponent(jLblTelefono)
-                    .addComponent(jLblCiudad)
-                    .addComponent(jLblCorreo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtCorreo)
-                    .addComponent(jTxtCiudad)
-                    .addComponent(jTxtNombre)
-                    .addComponent(jTxtDireccion)
-                    .addComponent(jTxtTelefono))
-                .addGap(42, 42, 42))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addComponent(btnLimpiar)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLblCorreo1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTxtCedula)
+                        .addGap(43, 43, 43))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblDireccion)
+                            .addComponent(jLblNombre)
+                            .addComponent(jLblTelefono)
+                            .addComponent(jLblCiudad)
+                            .addComponent(jLblCorreo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtCorreo)
+                            .addComponent(jTxtCiudad)
+                            .addComponent(jTxtNombre)
+                            .addComponent(jTxtDireccion)
+                            .addComponent(jTxtTelefono))
+                        .addGap(42, 42, 42))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,11 +189,15 @@ public class Lectores extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLblCorreo)
                     .addComponent(jTxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblCorreo1)
+                    .addComponent(jTxtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnLimpiar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         btnActualizar.setBackground(new java.awt.Color(0, 51, 153));
@@ -234,13 +258,13 @@ public class Lectores extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnActualizar)
                     .addComponent(btnEliminar))
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -251,6 +275,7 @@ public class Lectores extends javax.swing.JFrame {
         jTxtTelefono.setText("");
         jTxtCiudad.setText("");
         jTxtCorreo.setText("");
+        jTxtCedula.setText("");
     }
 
 
@@ -260,9 +285,10 @@ public class Lectores extends javax.swing.JFrame {
         String telefono = jTxtTelefono.getText();
         String ciudad = jTxtCiudad.getText();
         String correo = jTxtCorreo.getText();
+        String cedula = jTxtCedula.getText();
 
-        if (lector.validateInputs(nombre, direccion, telefono, ciudad, correo)) {
-            lector.agregarLector(nombre, direccion, telefono, ciudad, correo);
+        if (lector.validateInputs(nombre, direccion, telefono, ciudad, correo, cedula)) {
+            lector.agregarLector(nombre, direccion, telefono, ciudad, correo, cedula);
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente", "Agregar Datos",
                     JOptionPane.INFORMATION_MESSAGE);
             limpiar();
@@ -281,9 +307,10 @@ public class Lectores extends javax.swing.JFrame {
             String telefono = jTable_lectores.getValueAt(selectedRow, 3).toString();
             String ciudad = jTable_lectores.getValueAt(selectedRow, 4).toString();
             String correo = jTable_lectores.getValueAt(selectedRow, 5).toString();
+            String cedula = jTable_lectores.getValueAt(selectedRow, 6).toString();
             int id = Integer.parseInt(jTable_lectores.getValueAt(selectedRow, 0).toString()); 
 
-            lector.eliminarLector(id, nombre, direccion, telefono, ciudad, correo);
+            lector.eliminarLector(id, nombre, direccion, telefono, ciudad, correo, cedula);
             limpiar();
             lector.cargarLectores(jTable_lectores);
         } else {
@@ -305,8 +332,9 @@ public class Lectores extends javax.swing.JFrame {
                 String telefono = jTxtTelefono.getText();
                 String ciudad = jTxtCiudad.getText();
                 String correo = jTxtCorreo.getText();
+                String cedula = jTxtCedula.getText();
 
-                lector.actualizarLector(id, nombre, direccion, telefono, ciudad, correo);
+                lector.actualizarLector(id, nombre, direccion, telefono, ciudad, correo, cedula);
                 JOptionPane.showMessageDialog(null, "Datos del lector actualizados", "Actualizar Datos",
                         JOptionPane.INFORMATION_MESSAGE);
                 limpiar();
@@ -320,6 +348,10 @@ public class Lectores extends javax.swing.JFrame {
     private void jTxtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtNombreActionPerformed
+
+    private void jTxtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCedulaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -364,12 +396,14 @@ public class Lectores extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLblCiudad;
     private javax.swing.JLabel jLblCorreo;
+    private javax.swing.JLabel jLblCorreo1;
     private javax.swing.JLabel jLblDireccion;
     private javax.swing.JLabel jLblNombre;
     private javax.swing.JLabel jLblTelefono;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_lectores;
+    private javax.swing.JTextField jTxtCedula;
     private javax.swing.JTextField jTxtCiudad;
     private javax.swing.JTextField jTxtCorreo;
     private javax.swing.JTextField jTxtDireccion;
