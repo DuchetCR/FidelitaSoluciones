@@ -16,7 +16,7 @@ public class Bibliotecarios extends javax.swing.JFrame {
     public Bibliotecarios() {
         initComponents();
         bibliotecario = new Bibliotecario("", "", "", "", "","");
-        bibliotecario.cargarBibliotecario(jTable_bibliotecarios);
+        bibliotecario.cargar(jTable_bibliotecarios);
         setupTableListener();
     }
 
@@ -308,7 +308,7 @@ public class Bibliotecarios extends javax.swing.JFrame {
 
             bibliotecario.eliminarBibliotecario(id, nombre, direccion, telefono, ciudad, correo, codigo);
             limpiar();
-            bibliotecario.cargarBibliotecario(jTable_bibliotecarios);
+            bibliotecario.cargar(jTable_bibliotecarios);
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona un bibliotecario para eliminar.");
         }   
@@ -334,7 +334,7 @@ public class Bibliotecarios extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Datos del bibliotecario actualizados", "Actualizar Datos",
                         JOptionPane.INFORMATION_MESSAGE);
                 limpiar();
-                bibliotecario.cargarBibliotecario(jTable_bibliotecarios); 
+                bibliotecario.cargar(jTable_bibliotecarios); 
             } else {
                 JOptionPane.showMessageDialog(null, "Selecciona un bibliotecario para actualizar.");
             }  
