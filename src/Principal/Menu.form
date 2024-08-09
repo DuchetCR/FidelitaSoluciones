@@ -55,16 +55,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jLabel1" alignment="1" pref="312" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="ButtonLibro" alignment="1" min="-2" pref="94" max="-2" attributes="0"/>
-                  <Component id="jButtonLectores" alignment="1" min="-2" pref="94" max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="94" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="jButtonLectores" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jButtonBibliotecarios" alignment="1" pref="125" max="32767" attributes="0"/>
+                  <Component id="ButtonLibro" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jButton3" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Component id="jLabel1" alignment="1" pref="312" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -76,8 +77,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButtonLectores" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButtonBibliotecarios" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="70" max="32767" attributes="0"/>
+              <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,6 +122,14 @@
         <Property name="text" type="java.lang.String" value="Libreria Fidelitas"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonBibliotecarios">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bibliotecarios"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBibliotecariosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
