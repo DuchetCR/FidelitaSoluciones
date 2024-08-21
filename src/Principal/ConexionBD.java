@@ -129,10 +129,9 @@ public class ConexionBD {
         model.addColumn("Teléfono");
         model.addColumn("Ciudad");
         model.addColumn("Correo");
-        model.addColumn("Cedula");
 
         visor.setModel(model);
-        String[] dato = new String[7];
+        String[] dato = new String[6];
         Connection conexion = conectar();
         Statement st = null;
         ResultSet rs = null;
@@ -146,117 +145,85 @@ public class ConexionBD {
                 dato[3] = rs.getString("telefono");
                 dato[4] = rs.getString("ciudad");
                 dato[5] = rs.getString("correo");
-                dato[6] = rs.getString("cedula");
                 model.addRow(dato);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
-        public void leerBibliotecarios(String tabla, JTable visor) {
+
+    public void InsertarUsuario(String nombre, String direccion, String telefono, String ciudad, String correo) {
+        String sql = "INSERT INTO lectores (nombre, direccion, telefono, ciudad, correo) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conexion = conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ps.setString(2, direccion);
+            ps.setString(3, telefono);
+            ps.setString(4, ciudad);
+            ps.setString(5, correo);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Lector Insertado");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ActualizarUsuario(String nombre, String direccion, String telefono, String ciudad, String correo, String id) {
+        String sql = "UPDATE lectores SET nombre = ?, direccion = ?, telefono = ?, ciudad = ?, correo = ? WHERE id_usuario = ?";
+        try (Connection conexion = conectar();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ps.setString(2, direccion);
+            ps.setString(3, telefono);
+            ps.setString(4, ciudad);
+            ps.setString(5, correo);
+            ps.setString(6, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void leerPrestamos(String tabla, JTable visor) {
         String sql = "SELECT * FROM " + tabla;
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("ID Empleado");
-        model.addColumn("Nombre");
-        model.addColumn("Dirección");
-        model.addColumn("Teléfono");
-        model.addColumn("Ciudad");
-        model.addColumn("Correo");
-        model.addColumn("Código Empleado");
+        model.addColumn("ID Libro");
+        model.addColumn("ID Usuario");
+        model.addColumn("Fecha Prestamo");
 
         visor.setModel(model);
-        String[] dato = new String[7];
-        Connection conexion = conectar();
-        Statement st = null;
-        ResultSet rs = null;
-        try {
-            st = conexion.createStatement();
-            rs = st.executeQuery(sql);
+        String[] dato = new String[3];
+        try (Connection conexion = conectar();
+             Statement st = conexion.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+
             while (rs.next()) {
-                dato[0] = rs.getString("id_usuario");
-                dato[1] = rs.getString("nombre");
-                dato[2] = rs.getString("direccion");
-                dato[3] = rs.getString("telefono");
-                dato[4] = rs.getString("ciudad");
-                dato[5] = rs.getString("correo");
-                dato[6] = rs.getString("codigo_empleado");
+                dato[0] = rs.getString("id_libro");
+                dato[1] = rs.getString("id_usuario");
+                dato[2] = rs.getString("fecha_prestamo");
                 model.addRow(dato);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-    public void InsertarLector(ClaseLectores usuario) {
-        String sql = "INSERT INTO lectores (nombre, direccion, telefono, ciudad, correo, cedula) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection conexion = conectar();
-             PreparedStatement ps = conexion.prepareStatement(sql)) {
-
-            ps.setString(1, usuario.nombre);
-            ps.setString(2, usuario.direccion);
-            ps.setString(3, usuario.telefono);
-            ps.setString(4, usuario.ciudad);
-            ps.setString(5, usuario.correo);
-            ps.setString(6, usuario.getCedula());
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuario Insertado");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
     
-    public void InsertarBibliotecario(Bibliotecario usuario) {
-        String sql = "INSERT INTO bibliotecarios (nombre, direccion, telefono, ciudad, correo, codigo_empleado) VALUES (?, ?, ?, ?, ?, ?)";
+    public void InsertarPrestamo(int idLibro, int idUsuario, String fechaPrestamo) {
+        String sql = "INSERT INTO prestamos (id_libro, id_usuario, fecha_prestamo) VALUES (?, ?, ?)";
+
         try (Connection conexion = conectar();
              PreparedStatement ps = conexion.prepareStatement(sql)) {
 
-            ps.setString(1, usuario.nombre);
-            ps.setString(2, usuario.direccion);
-            ps.setString(3, usuario.telefono);
-            ps.setString(4, usuario.ciudad);
-            ps.setString(5, usuario.correo);
-            ps.setString(6, usuario.getCodigoEmpleado());
+            ps.setInt(1, idLibro);
+            ps.setInt(2, idUsuario);
+            ps.setDate(3, java.sql.Date.valueOf(fechaPrestamo));
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuario Insertado");
+            JOptionPane.showMessageDialog(null, "Préstamo registrado correctamente.");
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void ActualizarLector(String nombre, String direccion, String telefono, String ciudad, String correo, String cedula, String id) {
-        String sql = "UPDATE lectores SET nombre = ?, direccion = ?, telefono = ?, ciudad = ?, correo = ?, cedula = ? WHERE id_usuario = ?";
-        try (Connection conexion = conectar();
-             PreparedStatement ps = conexion.prepareStatement(sql)) {
-
-            ps.setString(1, nombre);
-            ps.setString(2, direccion);
-            ps.setString(3, telefono);
-            ps.setString(4, ciudad);
-            ps.setString(5, correo);
-            ps.setString(6, cedula);
-            ps.setString(7, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void ActualizarBibliotecario(String nombre, String direccion, String telefono, String ciudad, String correo, String codigo_empleado, String id) {
-        String sql = "UPDATE bibliotecarios SET nombre = ?, direccion = ?, telefono = ?, ciudad = ?, correo = ?, codigo_empleado = ? WHERE id_usuario = ?";
-        try (Connection conexion = conectar();
-             PreparedStatement ps = conexion.prepareStatement(sql)) {
-
-            ps.setString(1, nombre);
-            ps.setString(2, direccion);
-            ps.setString(3, telefono);
-            ps.setString(4, ciudad);
-            ps.setString(5, correo);
-            ps.setString(6, codigo_empleado);
-            ps.setString(7, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al registrar el préstamo: " + e.getMessage(),
+                    "Error al Registrar Préstamo", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
