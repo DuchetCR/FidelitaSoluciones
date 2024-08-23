@@ -293,6 +293,7 @@ public class Lectores extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
             limpiar();
         }    
+        lector.cargar(jTable_lectores);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed

@@ -87,7 +87,7 @@ public class ClasePrestamos {
 
             // Eliminar el libro y el lector de la base de datos
             conexion.eliminarLibroPorId(Integer.parseInt(id_libro));
-            conexion.eliminarLectorPorId(Integer.parseInt(id_usuario));
+//            conexion.eliminarLectorPorId(Integer.parseInt(id_usuario));
 
             // Actualizar la tabla de préstamos
             conexion.leerPrestamos("prestamos", table);

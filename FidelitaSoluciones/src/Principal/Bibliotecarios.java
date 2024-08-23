@@ -289,6 +289,7 @@ public class Bibliotecarios extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
             limpiar();
         }    
+        bibliotecario.cargar(jTable_bibliotecarios);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
